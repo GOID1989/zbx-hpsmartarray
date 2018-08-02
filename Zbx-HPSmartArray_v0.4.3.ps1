@@ -99,7 +99,7 @@ function Make-LLD() {
                     $all_ld = & "$ssacli" "ctrl slot=$($ctrl_slot) ld all show status".Split() | Where-Object {$_ -match "logicaldrive"}
                     
                     foreach ($ld in $all_ld) {                     
-                        if ($ld -match "logicaldrive (?<Num>\d) \((?<Capacity>[\d.]{1,} [KGT]B?), (?<RAID>RAID \d{1}[\+]{0,1}\d{0,1})\)") {
+                        if ($ld -match "logicaldrive (?<Num>\d) \((?<Capacity>[\d.]{1,} [KGT]B?), (?<RAID>RAID \d{1,}[\+]{0,1}\d{0,1})\)") {
                             [array]$lld_obj_list += [psobject]@{"{#LD.NUM}" = $Matches.Num;
                                                                 "{#LD.CAPACITY}" = $Matches.Capacity;
                                                                 "{#LD.RAID}" = $Matches.RAID;
